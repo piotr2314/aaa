@@ -1,6 +1,5 @@
-/** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ['via.placeholder.com'],  // Dodajemy dozwolony host
+    domains: ['via.placeholder.com', 'via.assets.so'], // Dodajemy domenę via.assets.so
   },
 }
