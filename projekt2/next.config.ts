@@ -1,5 +1,10 @@
 module.exports = {
   images: {
-    domains: ['via.placeholder.com', 'via.assets.so'], // Dodajemy domenę via.assets.so
+    remotePatterns: [
+      {
+        protocol: 'https', // Możesz również użyć 'http', jeśli chcesz zezwolić na obrazy z HTTP
+        hostname: '**', // Dopuszcza wszystkie domeny
+      },
+    ],
   },
 }

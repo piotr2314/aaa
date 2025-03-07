@@ -71,7 +71,7 @@ const Sidebar = () => {
       
       {/* Drugi prostokąt */}
       <div className="mt-6">
-        <h2 className="text-lg font-bold text-white mb-2">Twoje Playlisty</h2>
+        <h2 className="text-lg font-bold text-white mb-2">Your Library</h2>
         <div className="space-y-2">
           {songs.map((song) => (
             <SidebarSong key={song.id} song={song} />
@@ -140,7 +140,7 @@ const Home = () => {
         <Sidebar /></div>
 
         {/* Main Content (Playlists, Songs, etc.) */}
-        {/* <Playlist/> */}
+        <Playlist/>
       </div>
     </div>
   );
