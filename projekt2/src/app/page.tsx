@@ -10,29 +10,31 @@ const SidebarSong = ({ song }) => {
     <div className="cursor-pointer flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-lg">
       <img src={song.imgUrl} alt={song.title} width={50} height={50} className="rounded-lg" />
       <div>
-        <p className="text-white font-medium">{song.title}</p>
+        <p className="text-white font-medium break-words max-w-[150px]">{song.title}</p>
         <p className="text-gray-400 text-sm">{song.artist}</p>
       </div>
     </div>
   );
 };
+
 const SidebarPlaylist = ({ song }) => {
   return (
     <div className="cursor-pointer flex items-center space-x-3 p-2 hover:bg-gray-700 rounded-lg">
       <img src={song.imgUrl} alt={song.title} width={50} height={50} className="rounded-lg" />
       <div>
-        <p className="text-white font-medium">{song.title}</p>
+        <p className="text-white font-medium ">{song.title}</p>
         <p className="text-gray-400 text-sm">
-  {song.songs && song.songs.map((item, index) => (
-    <div key={index} className="pointer">
-      {item.title} {/* Tutaj zakłada się, że każda piosenka ma właściwość 'title' */}
-    </div>
-  ))}
-</p>
+          {song.songs && song.songs.map((item, index) => (
+            <div key={index} className="pointer">
+              {item.title} {/* Tutaj zakłada się, że każda piosenka ma właściwość 'title' */}
+            </div>
+          ))}
+        </p>
       </div>
     </div>
   );
 };
+
 // Komponent Sidebar
 const Sidebar = () => {
   const [songs, setSongs] = useState([]);
@@ -52,26 +54,26 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <aside className="  w-[20vw] [&::-webkit-scrollbar]:w-2
+    <aside className="[&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
   [&::-webkit-scrollbar-thumb]:bg-gray-300
   dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 min-w-[300px] overflow-auto shrink-0 rounded-[20px] bg-gray-900 p-4 h-screen flex flex-col justify-between relative left-0">
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 w-[300px] overflow-y-auto overflow-x-hidden shrink-0 rounded-[20px] bg-gray-900 p-4  pt-0 h-screen flex flex-col justify-between relative left-0">
       {/* Pierwszy prostokąt */}
-      <div>
-        <ul className="space-y-4 cursor-pointer">
-          <li className="text-xl hover:bg-green-600 p-2 rounded-md">
+      <div className="ml-[-16px]">
+        <ul className=" fixed cursor-pointer h-[100px] w-[283px]" >
+          <li className="text-xl bg-gray-900 hover:bg-gray-700 p-2">
             <Link href="/">Home</Link>
           </li>
-          <li className="text-xl cursor-pointer hover:bg-green-600 p-2 rounded-md">
+          <li className="text-xl cursor-pointer z-100 bg-gray-900 hover:bg-gray-700 p-2 mt-0">
             <Link href="/search">Search</Link>
           </li>
         </ul>
       </div>
       
       {/* Drugi prostokąt */}
-      <div className="mt-6">
-        <h2 className="text-lg font-bold text-white mb-2">Twoje Playlisty</h2>
+      <div className="mt-[106px]" >
+        <h2 className="text-lg font-bold text-white mb-2 ">Twoje Playlisty</h2>
         <div className="space-y-2">
           {songs.map((song) => (
             <SidebarSong key={song.id} song={song} />
@@ -81,6 +83,7 @@ const Sidebar = () => {
     </aside>
   );
 };
+
 const Playlist = () => {
   const [songs, setSongs] = useState([]);
 
@@ -99,11 +102,11 @@ const Playlist = () => {
   }, []);
 
   return (
-    <aside className="  w-[20vw] [&::-webkit-scrollbar]:w-2
+    <aside className="[&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
   [&::-webkit-scrollbar-thumb]:bg-gray-300
   dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 min-w-[300px] overflow-auto shrink-0 rounded-[20px] bg-gray-900 p-4 h-screen flex flex-col justify-between relative left-0">
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 w-[300px] overflow-auto shrink-0 rounded-[20px] bg-gray-900 p-4 h-screen flex flex-col justify-between relative left-0">
 
       {/* Drugi prostokąt z tytułem "Ulubione Playlisty" */}
       <div className="mt-6">
@@ -120,24 +123,31 @@ const Playlist = () => {
   );
 };
 
+// Komponent Navbar
+const Navbar = () => {
+  return (
+    <header className="flex items-center justify-between p-5 mt-[55px] bg-black shadow-md w-full">
+      <h1 className="text-3xl font-bold">Witaj Spotify</h1>
+      <div className="flex space-x-4">
+        <button className="px-4 py-2 rounded-full bg-green-500 hover:bg-green-600">Login</button>
+        <button className="px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">Sign Up</button>
+      </div>
+    </header>
+  );
+};
+
 // Komponent strony Home
 const Home = () => {
   return (
     <div className="bg-black min-h-screen text-white w-screen">
       {/* Header */}
-
+      <Navbar />
 
       {/* Main Content */}
       <div className="flex flex-row">
         <div className="flex w-fit">
-      <header className="flex items-center justify-between p-5 bg-black shadow-md w-fit absolute right-0">
-        {/* <h1 className="text-3xl font-bold">Witaj Spotify</h1> */}
-        <div className="flex space-x-4">
-          <button className="px-4 py-2 rounded-full bg-green-500 hover:bg-green-600">Login</button>
-          <button className="px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">Sign Up</button>
+          <Sidebar />
         </div>
-      </header>
-        <Sidebar /></div>
 
         {/* Main Content (Playlists, Songs, etc.) */}
         {/* <Playlist/> */}
@@ -147,4 +157,4 @@ const Home = () => {
 };
 
 export default Home;
-export { Sidebar, SidebarSong };
+export { Sidebar, SidebarSong, Navbar };
